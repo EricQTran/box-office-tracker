@@ -12,4 +12,4 @@ AddOutputFilterByType DEFLATE application/rss+xml
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript
 
-The result was pretty amazing. The original size was 1887 and it compressed down to 699 kb. The file was reduced by 1kb.
+The result was pretty amazing. The original size was 2057 and it compressed down to 771 kb. The file was reduced by 1kb. 
