@@ -7,7 +7,7 @@ print<<END;
 <html>
 <head>
 <title>Environment Variables</title>
-</head><body><h1 align="center">Environment Variables</h1><hr />
+</head><body><h1 align="center">Environment Variables from CGI</h1><hr />
 END
 
 foreach $variable (sort keys %ENV){
