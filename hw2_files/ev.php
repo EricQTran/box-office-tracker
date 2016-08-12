@@ -4,10 +4,9 @@ header('Content-Type: text/html');
 echo "<html><head><title>Environment Variables</title>";
 
 echo "</head><body align='center'>";
-
-foreach ($_ENV as $name => $ky) {
-	echo "<p>$name : ".$ky. "</p><br>";
-}
+echo "<h1>Environment Variables from PHP</h1>";
+echo "<pre>";
+print_r($_SERVER);
 
 
 
