@@ -1,7 +1,18 @@
 #!/usr/bin/perl
 
 print "Content-type: text/html\n\n";
-print "<html><head><title>Hello World!</title>";
-print "</head><body bgcolor='yellow'>\n";
-print "<h1>Hello from CGI</h1>\n";
-print "</body>\n</html>";
+
+print <<"EOF";
+
+<html>
+
+<head>
+<title>Hello World!</title>
+</head>
+
+<body bgcolor='yellow'>
+<h1>Hello from CGI</h1>
+</body>
+
+</html>"
+EOF
