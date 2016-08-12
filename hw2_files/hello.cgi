@@ -14,5 +14,5 @@ print <<"EOF";
 <h1>Hello from CGI</h1>
 </body>
 
-</html>"
+</html>
 EOF
