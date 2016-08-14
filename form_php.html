@@ -8,13 +8,16 @@
 <body>
   <h1>Form Submitting Using PHP</h1>
 
-  <form action="hw2_files/echo.php">
+
+  
+
+  <form action="hw2_files/echoGet.php">
     First Name:
     <input type="text" name="firstname"><br>
     Last Name:
     <input type="text" name="lastname"><br>
     <p>Favorite Color: </p>
-  <select id="colorSelect">
+  <select id="colorSelect" name="cSelect">
   
   <option value="red">Red</option>
   <option value="blue">Blue</option>
@@ -26,13 +29,29 @@
   </select>
 
   <p>Request Method: </p>
-  <select id="methodSelect">
-    <option value="get">GET</option>
-    <option value="post">POST</option>
+  <select id="methodSelect" name="mSelect">
+    <option value="get" onclick="sendGet();">GET</option>
+    <option value="post" onclick="sendPost();">POST</option>
   </select>
     <input type="submit">
 
   </form>
+
+  <script type="text/javascript">
+
+  var method="echoGet.php";	
+  function sendGet(){
+
+  method="echoGet.php";
+
+  }
+
+  function sendPost(){
+
+   method="echoPost.php";
+  }
+  </script>
+
 
 
 </body>

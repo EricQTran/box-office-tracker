@@ -1,5 +1,6 @@
+
 <?php
-header('Content-Type: text/html'); 
+header('Content-Type: text/html');
 echo "<html><head><title>Form Echo</title>";
 
 $color=$_GET["cSelect"];
