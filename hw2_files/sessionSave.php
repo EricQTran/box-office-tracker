@@ -2,18 +2,12 @@
 
 session_start();
 
-$_SESSION["username"] = $_GET["username"];
+$_SESSION["name"] = $_GET["username"];
 
-header('Content-Type: text/html'); 
-echo "<html><head><title>Form Echo</title>";
+$name = $_SESSION["name"];
 
-echo "</head><body><h1>";
+print "Username: " .$name . " was saved!\n<br>";
 
-$name= $_SESSION["username"];
-echo "Session was saved! Username was $name ";
-
-echo "</h1>";
-
-echo"</body></html>";
+print "<a href='sessionpage2.php'>Link to page 2</a>";
 
 ?>
