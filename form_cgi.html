@@ -17,17 +17,16 @@
   	var form = document.getElementById("theform");
 
   	if(selector == "post"){
-  		form.action="hw2_files/echoPost.php";
   		form.method="post";
   	}
   	else{
-  		form.action="hw2_files/echoGet.php";
+  		form.action="hw2_files/echoGet.cgi";
   		form.method="get";
   	}
   }
   </script>
 
-  <form action="hw2_files/echoGet.php" id="theform">
+  <form action="hw2_files/echoGet.cgi" id="theform">
     First Name:
     <input type="text" name="firstname"><br>
     Last Name:
