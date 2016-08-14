@@ -9,9 +9,23 @@
   <h1>Form Submitting Using PHP</h1>
 
 
+  <script type="text/javascript">
   
+  function sendGetPost(){
+  	
+  	var selector = document.getElementById("methodSelect").value;
+  	var form = document.getElementById("theform");
 
-  <form action="hw2_files/echoGet.php">
+  	if(selector == "post"){
+  		form.action="hw2_files/echoPost.php";
+  	}
+  	else{
+  		form.action="hw2_files/echoGet.php";
+  	}
+  }
+  </script>
+
+  <form action="hw2_files/echoGet.php" id="theform">
     First Name:
     <input type="text" name="firstname"><br>
     Last Name:
@@ -29,28 +43,16 @@
   </select>
 
   <p>Request Method: </p>
-  <select id="methodSelect" name="mSelect">
-    <option value="get" onclick="sendGet();">GET</option>
-    <option value="post" onclick="sendPost();">POST</option>
+  <select id="methodSelect" name="mSelect" onchange="sendGetPost();">
+    <option value="get">GET</option>
+    <option value="post">POST</option>
   </select>
     <input type="submit">
 
   </form>
 
-  <script type="text/javascript">
 
-  var method="echoGet.php";	
-  function sendGet(){
-
-  method="echoGet.php";
-
-  }
-
-  function sendPost(){
-
-   method="echoPost.php";
-  }
-  </script>
+  
 
 
 
