@@ -20,9 +20,10 @@
         print "howdy stranger... tell me your name on page 1!";
 	} 
  ?>
-  
-  <input action="destroySession.php" type="submit" value= "clear Session">
-
+  <br>
+  <a href="destroySession.php" > Clear Session </a>
+  <br>
+  <a href="../sessionpage1_php.html"> Return to Page 1 </a>
 
 
 </body>
