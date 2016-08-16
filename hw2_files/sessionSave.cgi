@@ -12,7 +12,7 @@ my $session = CGI::Session->new($q);
 my $name = param("username");
 my $id = $session -> id;
 my $cookie = $q ->cookie("CGISESSID", $id);
-
+$q ->header(-cookie=>$cookie);
 $session ->param('username', $name);
 my $user = $session -> param("username");
 print header;
