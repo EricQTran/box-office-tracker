@@ -31,6 +31,8 @@
 
 </head>
 <body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <div class="container">
 
 <h1>Box Office Tracker</h1>
@@ -127,8 +129,51 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+var movieWrapper = {};
+		
+	movieWrapper.loadData = function () {
+		
+		$("#movieGrid").html("");
+		
+		$.getJSON("./api.php", function(data) {
+			
+			    if (data.length == 0) {
+				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
+			    } else {
+				  $.each(data, function (index,value) {
+					  
+					  var str = "";
+					  str += "<tr><td>"+value.movie_title+"</td>";
+					  str += "<td>"+value.studio+"</td>";
+					  str += "<td>"+value.year+"</td>";
+					  str += "<td>"+value.box_office+"</td>";
+					  str += "<td>"+value.picture+"</td>";
+
+					  
+					  str += "<td><div class='row'>";
+
+					  /*
+	    	    
+	                  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='SBC.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+
+	    
+	                  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='SBC.confirmDelete(" + value.user_id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+					 */
+					  str += "</div></td></tr>";
+
+					  $(str).appendTo("#movieGrid");					
+				  });
+				}
+   		});	
+	}; /* loadData */
+
+
+
+</script>
 
 </body>
 
