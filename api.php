@@ -30,9 +30,17 @@ for ($i=0;$i<count($columns);$i++) {
  
  
 
-$sql = "select * from movies";
 
-
+switch ($method) {
+  case 'GET':
+    $sql = "select * from movies".($key?" where id=$key":''); break;
+  case 'PUT':
+    $sql = "update movies set $set where id=$key"; break;
+  case 'POST':
+    $sql = "insert into movies set $set"; break;
+  case 'DELETE':
+    $sql = "delete from movies where id=$key"; break;
+}
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {

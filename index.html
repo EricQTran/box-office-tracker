@@ -136,9 +136,6 @@
 var movieWrapper = {};
 		
 	movieWrapper.loadData = function () {
-		
-	
-		
 		$.getJSON("./api.php", function(data) {
 		
 			    if (data.length == 0) {
@@ -147,8 +144,6 @@ var movieWrapper = {};
 
 			    else {
 				  
-		
-					  
 					 $.each(data, function (index,value) {
 					  
 					  var str = "";
@@ -166,15 +161,44 @@ var movieWrapper = {};
 				  });
 				}
    		});	
-	}; /* loadData */
+	};
+
+
+	movieWrapper.doAdd = function doAdd() {
+		
+		var obj = {};
+		obj.title = $("#movie_title").val();
+		obj.studio = $("#studio").val();
+		obj.year = $("#year").val();
+		obj.total = $("#box_office").val();
+		obj.picture = $("#picture").val();
+					
+		jQuery.ajax({
+         type: "POST",
+         url: "./api.php",
+         data: JSON.stringify(obj),
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (data, status, jqXHR) {
+              
+            //$("#actionBtn").unbind("click");
+		 	$("#addModal").modal('hide');
+		 	movieWrapper.loadData();
+         },
+     
+         error: function (jqXHR, status) {            
+              // error handler
+              alert("unable to add");
+         }
+
+        });			
+	}; /* doAdd */
 
  // bind load events 
    $(document).ready(function () {
 		
 		movieWrapper.loadData();
-		 
-		
-					
+		 			
     });
 
 </script>
