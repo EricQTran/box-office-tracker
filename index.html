@@ -140,14 +140,19 @@ var movieWrapper = {};
 		$("#movieGrid").html("");
 		
 		$.getJSON("./api.php", function(data) {
+			console.log(data);
 		
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
-			    } else {
+			    } 
+
+
+
+			    else {
 				  $.each(data, function (index,value) {
 					  
 					  var str = "";
-					  str += "<tr><td>"+value.movie_title+"</td>";
+					  str += "<tr><td>"+value.title+"</td>";
 					  str += "<td>"+value.studio+"</td>";
 					  str += "<td>"+value.year+"</td>";
 					  str += "<td>"+value.box_office+"</td>";
@@ -156,13 +161,6 @@ var movieWrapper = {};
 					  
 					  str += "<td><div class='row'>";
 
-					  /*
-	    	    
-	                  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='SBC.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
-
-	    
-	                  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='SBC.confirmDelete(" + value.user_id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
-					 */
 					  str += "</div></td></tr>";
 
 					  $(str).appendTo("#movieGrid");					
