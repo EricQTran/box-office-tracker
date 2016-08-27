@@ -1,7 +1,7 @@
 <?php
 
 require_once 'config.inc';
- 
+echo "hello"; 
 // what method is in play
 $method = $_SERVER['REQUEST_METHOD'];
 

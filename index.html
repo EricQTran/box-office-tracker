@@ -139,8 +139,8 @@ var movieWrapper = {};
 		
 		$("#movieGrid").html("");
 		
-		$.getJSON("api.php", function(data) {
-			
+		$.getJSON("./api.php", function(data) {
+		
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
 			    } else {
