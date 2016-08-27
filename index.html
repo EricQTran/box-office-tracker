@@ -137,31 +137,20 @@ var movieWrapper = {};
 		
 	movieWrapper.loadData = function () {
 		
-		$("#movieGrid").html("");
+	
 		
 		$.getJSON("./api.php", function(data) {
-			console.log(data);
 		
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
 			    } 
 
-
-
 			    else {
-				  $.each(data, function (index,value) {
+				  
+				  $.each(data, function (name, value) {
 					  
 					  var str = "";
-					  str += "<tr><td>"+value.title+"</td>";
-					  str += "<td>"+value.studio+"</td>";
-					  str += "<td>"+value.year+"</td>";
-					  str += "<td>"+value.box_office+"</td>";
-					  str += "<td>"+value.picture+"</td>";
-
-					  
-					  str += "<td><div class='row'>";
-
-					  str += "</div></td></tr>";
+					  alert("hello");
 
 					  $(str).appendTo("#movieGrid");					
 				  });
