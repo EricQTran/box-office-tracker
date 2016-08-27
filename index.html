@@ -21,59 +21,114 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
-	<title>Eric Tran's Webpage</title>
+	<title>Box Office Tracker</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
 
 	<style type="text/css">
-
-	h1{
-		font-weight: bold;
-		display: block;
-		font-family: "Times New Roman", Times, serif;
-	}
-
-	#jared{
-		content:url(img/jared.jpg);
-		border-radius: 50%;
-		display: block;
-		margin: auto;
-		width: 50%;
-		height: auto;
-	}
-
-	body{
-		background-image: url("img/background.jpg");
-		text-align: center;
-		color: white;
-	}
-
-	#emailName{
-		color: white;
-	}
-
-	p{
-		color: white;
-	}
-
 
 	</style>
 
 </head>
 <body>
-<h1>Welcome!</h1>
-<h2>Website created by: Eric Tran <a href="mailto:eqtran@ucsd.edu" id="emailName">eqtran@ucsd.edu</a></h2>
-<h2>HW2</h2>
+<div class="container">
 
-<p><a href="/hw2_files/hello.cgi">CGI : hello world</a></p>
-<p><a href="/hw2_files/hello.php">PHP : hello world</a></p>
-<p><a href="/hw2_files/ev.cgi">CGI : environment variables</a></p>
-<p><a href="/hw2_files/ev.php">PHP : environment variables</a></p>
-<p><a href="/form_cgi.html">CGI : form submitting</a></p>
-<p><a href="/form_php.html">PHP : form submitting</a></p>
-<p><a href="/sessionpage1_cgi.html">CGI: Session</a></p>
-<p><a href="/sessionpage1_php.html">PHP: Session</a></p>
+<h1>Box Office Tracker</h1>
+<h3>CRUD application created by: Eric Tran <a href="mailto:eqtran@ucsd.edu" id="emailName">eqtran@ucsd.edu</a></h3>
+<table id="movieGrid" class='table'>
+<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>
+<!-- place holding -->
 
-<div class="image" id="jared"></div>
+</table>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Update Record</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Remove Record</button>
 
+
+
+<!-- Add/Update Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add/Update a Record</h4>
+      </div>
+      <div class="modal-body">
+        <form id="addForm" class="form">
+	 <div class="form-group">
+	 	<label for="movie_title">Movie Title</label>
+	 	<input type="text" name="movie_title" id="movie_title" value=""  class="form-control">
+	 </div>
+
+	 <div class="form-group">
+	 	<label for="studio">Studio</label>
+	 	<input type="text" name="studio" id="studio" value=""  class="form-control">
+	 </div>
+
+	<div class="form-group">
+		<label for="year">Year</label>
+		<input type="text" name="year" id="year" value=""  class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="box_office">Box Office $</label>
+		<input type="text" name="box_office" id="box_office" value=""  class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="picture">Picture</label>
+		<input type="text" name="picture" id="picture" value=""  class="form-control">
+	</div>
+
+	
+	      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Delete modal -->
+<div id="deleteModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteModalLabel">Confirm Delete</h4>
+      </div>
+      
+      
+      
+      <div class="modal-footer">
+
+      <form>
+	  	<input type="hidden" name="user_id" id="deleteConfirm_user_id" value="">
+	  	
+	  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" id="deleteBtn" class="btn btn-primary" value="Delete">Delete</button>
+
+       </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 </body>
 
