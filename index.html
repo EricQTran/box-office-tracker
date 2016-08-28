@@ -161,11 +161,14 @@ var movieWrapper = {};
 			    } 
 
 			    if(numRecords){
+				//alert("pagination selected" + numRecords);
+
 			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 			    	
-			    	while(i < numRecords){
+			    	
 					
 						$.each(data, function (index,value) {
+						if(i< numRecords){
 				
 					  		var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
@@ -174,16 +177,19 @@ var movieWrapper = {};
 					  		str += "<td>"+value.total+"</td>";
 					  		str += "<td>"+value.picture+"</td>"; 
 					  		str += "</tr>";
-					  		alert(i);
+					  		
 					  		i++;
-					  		$(str).appendTo("#movieGrid");	
+							
+					  		$(str).appendTo("#movieGrid");
+					         	}	
 					  			
-				 		 });
-					}
+				 	 });
+					
 
 			}
 
 			  else{
+			//	alert("pagination not selected");
 			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 					$.each(data, function (index,value) {
 				
