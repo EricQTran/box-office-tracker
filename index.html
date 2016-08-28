@@ -162,23 +162,26 @@ var movieWrapper = {};
 
 			    if(numRecords){
 			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
-			    	while(i < numRecords)
-					$.each(data, function (index,value) {
+			    	
+			    	while(i < numRecords){
+					
+						$.each(data, function (index,value) {
 				
-					  var str = "";
-					  str += "<tr><td>"+value.title+"</td>";
-					  str += "<td>"+value.studio+"</td>";
-					  str += "<td>"+value.year+"</td>";
-					  str += "<td>"+value.total+"</td>";
-					  str += "<td>"+value.picture+"</td>"; 
-					  str += "</tr>";
-					  alert(i);
-					  i++;
-					  $(str).appendTo("#movieGrid");	
+					  		var str = "";
+					  		str += "<tr><td>"+value.title+"</td>";
+					 	    str += "<td>"+value.studio+"</td>";
+					  		str += "<td>"+value.year+"</td>";
+					  		str += "<td>"+value.total+"</td>";
+					  		str += "<td>"+value.picture+"</td>"; 
+					  		str += "</tr>";
+					  		alert(i);
+					  		i++;
+					  		$(str).appendTo("#movieGrid");	
 					  			
-				  });
+				 		 });
+					}
 
-				}
+			}
 
 			  else{
 			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
