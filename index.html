@@ -146,20 +146,14 @@ var movieWrapper = {};
 			    } 
 
 			    else {
-				  
 					 $.each(data, function (index,value) {
-					  
 					  var str = "";
 					  str += "<tr><td>"+value.title+"</td>";
 					  str += "<td>"+value.studio+"</td>";
 					  str += "<td>"+value.year+"</td>";
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
-					  
-					 
-
 					  str += "</tr>";
-
 					  $(str).appendTo("#movieGrid");					
 				  });
 				}
@@ -242,7 +236,7 @@ var movieWrapper = {};
 		$('#movie_title').focus()
 	 });
 		
-	 $('#addModal').modal('show');
+	 //$('#addModal').modal('show');
 	  
    } /* editForm */
 
