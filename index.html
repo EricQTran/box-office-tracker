@@ -58,8 +58,6 @@
 
 </table>
 <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Update Record</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Remove Record</button>
 
 <!--Pagination-->
 <div class="dropdown">
@@ -174,7 +172,7 @@ var movieWrapper = {};
 			    } 
 
 			    if(numRecords){
-				//alert("pagination selected" + numRecords);
+				alert("pagination selected" + numRecords);
 
 			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 			    	
@@ -209,30 +207,25 @@ var movieWrapper = {};
 			}
 
 			  else{
-			//	alert("pagination not selected");
+			  alert("pagination not selected");
 			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 					$.each(data, function (index,value) {
 				
 					  var str = "";
-					  str += "<tr><td>"+value.title+"</td>";
-					  str += "<td>"+value.studio+"</td>";
-					  str += "<td>"+value.year+"</td>";
-					  str += "<td>"+value.total+"</td>";
-					  str += "<td>"+value.picture+"</td>"; 
-
-
-					  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+					  		str += "<tr><td>"+value.title+"</td>";
+					 	    str += "<td>"+value.studio+"</td>";
+					  		str += "<td>"+value.year+"</td>";
+					  		str += "<td>"+value.total+"</td>";
+					  		str += "<td>"+value.picture+"</td>"; 
+					  		str += "<td><div class='row'>";
+	    	    
+	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
 
 	    
-	                   str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 
-					  str += "</div></td></tr>";
-
-
-
-
-
-
+					  		str += "</div></td></tr>";
+					  		
 					  $(str).appendTo("#movieGrid");	
 					  			
 				  });
