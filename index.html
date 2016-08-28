@@ -161,7 +161,7 @@ var movieWrapper = {};
 			    } 
 
 			    if(numRecords){
-			    	$("#movieGrid").html("");
+			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 			    	while(i < numRecords)
 					$.each(data, function (index,value) {
 				
@@ -172,6 +172,7 @@ var movieWrapper = {};
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
 					  str += "</tr>";
+					  alert(i);
 					  i++;
 					  $(str).appendTo("#movieGrid");	
 					  			
@@ -180,7 +181,7 @@ var movieWrapper = {};
 				}
 
 			  else{
-			  	 	$("#movieGrid").html("");
+			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 					$.each(data, function (index,value) {
 				
 					  var str = "";
@@ -190,7 +191,6 @@ var movieWrapper = {};
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
 					  str += "</tr>";
-					  i++;
 					  $(str).appendTo("#movieGrid");	
 					  			
 				  });
@@ -311,7 +311,6 @@ var movieWrapper = {};
 
    movieWrapper.pagination = function pagination(num){
    		movieWrapper.loadData(num);
-   		alert(num);
    }
 
  // bind load events 
