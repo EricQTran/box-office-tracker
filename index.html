@@ -46,6 +46,18 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Update Record</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Remove Record</button>
 
+<!--Pagination-->
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pagination
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#" id="dropdown5">5</a></li>
+    <li><a href="#" id="dropdown10">10</a></li>
+    <li><a href="#" id="dropdown20">20</a></li>
+    <li><a href="#" id="dropdownAll">All</a></li>
+
+  </ul>
+</div>
 
 
 <!-- Add/Update Modal -->
@@ -138,7 +150,9 @@
 
 var movieWrapper = {};
 		
-	movieWrapper.loadData = function () {
+	movieWrapper.loadData = function (numRecords) {
+						int i = 0;
+
 		$.getJSON("./api.php", function(data) {
 		
 			    if (data.length == 0) {
@@ -146,7 +160,10 @@ var movieWrapper = {};
 			    } 
 
 			    else {
-					 $.each(data, function (index,value) {
+					$.each(data, function (index,value) {
+					if(numRecords){
+					  while(i < numRecords)
+					  {
 					  var str = "";
 					  str += "<tr><td>"+value.title+"</td>";
 					  str += "<td>"+value.studio+"</td>";
@@ -154,7 +171,20 @@ var movieWrapper = {};
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
 					  str += "</tr>";
-					  $(str).appendTo("#movieGrid");					
+					  i++;
+					  $(str).appendTo("#movieGrid");
+					  }	
+					}
+					else{
+					  var str = "";
+					  str += "<tr><td>"+value.title+"</td>";
+					  str += "<td>"+value.studio+"</td>";
+					  str += "<td>"+value.year+"</td>";
+					  str += "<td>"+value.total+"</td>";
+					  str += "<td>"+value.picture+"</td>"; 
+					  str += "</tr>";
+					  $(str).appendTo("#movieGrid");	
+					  }				
 				  });
 				}
    		});	
@@ -269,9 +299,43 @@ var movieWrapper = {};
 	  
    } /* editForm */
 
+   movieWrapper.pagination = function pagination(num){
+   		movieWrapper.loadData(num);
+   		alert(num);
+   }
+
  // bind load events 
    $(document).ready(function () {
-		
+		$('#dropdown5').click(function(e){
+			e.preventDefault();
+			movieWrapper.pagination(5);
+		});
+		$('#dropdown10').click(function(e){
+			e.preventDefault();
+			movieWrapper.pagination(10);
+		});
+		$('#dropdown20').click(function(e){
+			e.preventDefault();
+			movieWrapper.pagination(20);
+		});
+		$('#dropdownAll').click(function(e){
+			e.preventDefault();
+			movieWrapper.pagination();
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		movieWrapper.loadData();
 
 		$("#addBtn").click(function () {
