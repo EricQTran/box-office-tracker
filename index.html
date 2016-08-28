@@ -270,13 +270,15 @@ var movieWrapper = {};
 
 	movieWrapper.doAdd = function doAdd() {
 		
-		var obj = {};
-		obj.title = $("#movie_title").val();
-		obj.studio = $("#studio").val();
-		obj.year = $("#year").val();
-		obj.total = $("#box_office").val();
-		obj.picture = $("#picture").val();
-					
+		if($("#movie_title").val() != null)
+		{
+			var obj = {};
+			obj.title = $("#movie_title").val();
+			obj.studio = $("#studio").val();
+			obj.year = $("#year").val();
+			obj.total = $("#box_office").val();
+			obj.picture = $("#picture").val();
+		}			
 		jQuery.ajax({
          type: "POST",
          url: "./api.php",
