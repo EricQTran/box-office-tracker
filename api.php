@@ -54,6 +54,7 @@ if (!$result) {
 
 //echo json_encode(mysqli_fetch_object($result));
 
+
 if ($method == 'GET') {
   if (!$key) echo '[';
   for ($i=0;$i<mysqli_num_rows($result);$i++) {
