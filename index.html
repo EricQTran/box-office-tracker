@@ -42,6 +42,14 @@
 		background-color: grey;
 	}
 
+	#addBtn{
+		display: inline-block;
+	}
+
+	.dropdown{
+		display: inline-block;
+	}
+
 	</style>
 
 </head>
@@ -52,12 +60,6 @@
 
 <h1>Box Office Tracker</h1>
 <h3>Eric Tran <a href="mailto:eqtran@ucsd.edu" id="emailName">eqtran@ucsd.edu</a></h3>
-<table id="movieGrid" class='table'>
-<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>
-<!-- place holding -->
-
-</table>
-<button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
 
 <!--Pagination-->
 <div class="dropdown">
@@ -71,6 +73,15 @@
 
   </ul>
 </div>
+
+
+<button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
+
+<table id="movieGrid" class='table'>
+<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>
+<!-- place holding -->
+
+</table>
 
 
 <!-- Add/Update Modal -->
