@@ -160,11 +160,11 @@ var movieWrapper = {};
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
 			    } 
 
-			    else {
+			    if(numRecords){
+			    	$"#movieGrid".html("");
+			    	while(i < numRecords)
 					$.each(data, function (index,value) {
-					if(numRecords){
-					  while(i < numRecords)
-					  {
+				
 					  var str = "";
 					  str += "<tr><td>"+value.title+"</td>";
 					  str += "<td>"+value.studio+"</td>";
@@ -173,10 +173,16 @@ var movieWrapper = {};
 					  str += "<td>"+value.picture+"</td>"; 
 					  str += "</tr>";
 					  i++;
-					  $(str).appendTo("#movieGrid");
-					  }	
-					}
-					else{
+					  $(str).appendTo("#movieGrid");	
+					  			
+				  });
+
+				}
+
+			  else{
+			  	 	$"#movieGrid".html("");
+					$.each(data, function (index,value) {
+				
 					  var str = "";
 					  str += "<tr><td>"+value.title+"</td>";
 					  str += "<td>"+value.studio+"</td>";
@@ -184,10 +190,13 @@ var movieWrapper = {};
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
 					  str += "</tr>";
+					  i++;
 					  $(str).appendTo("#movieGrid");	
-					  }				
+					  			
 				  });
-				}
+
+			  }
+			
    		});	
 	};
 
