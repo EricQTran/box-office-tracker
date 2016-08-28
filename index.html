@@ -42,7 +42,7 @@
 <!-- place holding -->
 
 </table>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
+<button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Update Record</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Remove Record</button>
 
@@ -85,11 +85,14 @@
 		<input type="text" name="picture" id="picture" value=""  class="form-control">
 	</div>
 
+		<input type="hidden" name="id" id="id" value="">
+
+
 	
 	      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
       </div>
     </div>
   </div>
@@ -181,7 +184,7 @@ var movieWrapper = {};
          dataType: "json",
          success: function (data, status, jqXHR) {
               
-            //$("#actionBtn").unbind("click");
+            $("#submitBtn").unbind("click");
 		 	$("#addModal").modal('hide');
 		 	movieWrapper.loadData();
          },
@@ -194,10 +197,63 @@ var movieWrapper = {};
         });			
 	}; /* doAdd */
 
+
+	movieWrapper.editForm = function editRecord(record) {
+	  
+	  if (!record) {
+		// no data so it is a straight add
+		
+		// clear the fields 
+		$("#movie_title").val('');
+		$("#studio").val('');
+		$("#year").val('');
+		$("#box_office").val('');
+		$("#picture").val('');
+		
+		//$("#addModalLabel").html("Add Record");
+	
+	    $("#submitBtn").html('Add');
+	    $("#submitBtn").click(function () {
+		   movieWrapper.doAdd(); 
+	    });
+	    
+	  } else {
+	    // data passed so it is an edit
+	    
+	  
+	    $("#movie_title").val(record.movie_title);
+		$("#studio").val(record.studio);
+		$("#year").val(record.year);
+		$("#box_office").val(record.box_office);
+		$("#picture").val(record.picture);
+	    $("#id").val(record.id);
+	  
+	  
+	    //$("#addModalLabel").html("Edit Record");
+	
+	    $("#submitBtn").html('Update');
+	    $("#submitBtn").click(function () {
+		   //SBC.doUpdate(); 
+	    });
+	  }
+	  
+	 // focus the first field
+	 $('#addModal').on('shown.bs.modal', function () {
+		$('#movie_title').focus()
+	 });
+		
+	 $('#addModal').modal('show');
+	  
+   } /* editForm */
+
  // bind load events 
    $(document).ready(function () {
 		
 		movieWrapper.loadData();
+
+		$("#addBtn").click(function () {
+		   movieWrapper.editForm();	
+		});
 		 			
     });
 
