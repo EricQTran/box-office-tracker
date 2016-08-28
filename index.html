@@ -189,7 +189,14 @@ var movieWrapper = {};
 					  		str += "<td>"+value.year+"</td>";
 					  		str += "<td>"+value.total+"</td>";
 					  		str += "<td>"+value.picture+"</td>"; 
-					  		str += "</tr>";
+					  		str += "<td><div class='row'>";
+	    	    
+	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+
+	    
+	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+
+					  		str += "</div></td></tr>";
 					  		
 					  		i++;
 							
@@ -212,7 +219,20 @@ var movieWrapper = {};
 					  str += "<td>"+value.year+"</td>";
 					  str += "<td>"+value.total+"</td>";
 					  str += "<td>"+value.picture+"</td>"; 
-					  str += "</tr>";
+
+
+					  str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+
+	    
+	                   str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+
+					  str += "</div></td></tr>";
+
+
+
+
+
+
 					  $(str).appendTo("#movieGrid");	
 					  			
 				  });
