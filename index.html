@@ -273,11 +273,14 @@ var movieWrapper = {};
 		
 			var obj = {};
 			obj.title = $("#movie_title").val();
-			alert("title : " + obj.title);
 			obj.studio = $("#studio").val();
 			obj.year = $("#year").val();
 			obj.total = $("#box_office").val();
 			obj.picture = $("#picture").val();
+
+		if(obj.title == ''|| obj.studio == '' || obj.year == '' ||obj.total =='' || obj.picture == ''){
+			alert ("Please fill in all fields");
+		}
 			
 
 		jQuery.ajax({
