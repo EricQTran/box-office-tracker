@@ -191,6 +191,35 @@ var movieWrapper = {};
         });			
 	}; /* doAdd */
 
+	movieWrapper.doUpdate = function doUpdate() {
+		
+		var obj = {};
+		obj.title = $("#movie_title").val();
+		obj.studio = $("#studio").val();
+		obj.year = $("#year").val();
+		obj.total = $("#box_office").val();
+		obj.picture = $("#picture").val();
+					
+		jQuery.ajax({
+         type: "PUT",
+         url: "./api.php/"+ obj.id,
+         data: JSON.stringify(obj),
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (data, status, jqXHR) {
+              
+            $("#actionBtn").unbind("click");
+		 	$("#addModal").modal('hide');
+		 	SBC.loadData();
+         },
+     
+         error: function (jqXHR, status) {            
+              // error handler
+              console.log(jqXHR.status);
+         }
+        });			
+	} /* doUpdate */
+
 
 	movieWrapper.editForm = function editRecord(record) {
 	  
@@ -204,7 +233,7 @@ var movieWrapper = {};
 		$("#box_office").val('');
 		$("#picture").val('');
 		
-		//$("#addModalLabel").html("Add Record");
+		$("#myModalLabel").html("Add Record");
 	
 	    $("#submitBtn").html('Add');
 	    $("#submitBtn").click(function () {
@@ -223,11 +252,11 @@ var movieWrapper = {};
 	    $("#id").val(record.id);
 	  
 	  
-	    //$("#addModalLabel").html("Edit Record");
+	    $("#myModalLabel").html("Edit Record");
 	
 	    $("#submitBtn").html('Update');
 	    $("#submitBtn").click(function () {
-		   //SBC.doUpdate(); 
+		   movieWrapper.doUpdate(); 
 	    });
 	  }
 	  
