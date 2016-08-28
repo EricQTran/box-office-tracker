@@ -281,7 +281,9 @@ var movieWrapper = {};
 		if(obj.title == ''|| obj.studio == '' || obj.year == '' ||obj.total =='' || obj.picture == ''){
 			alert ("Please fill in all fields");
 		}
-			
+
+
+		else{
 
 		jQuery.ajax({
          type: "POST",
@@ -301,7 +303,9 @@ var movieWrapper = {};
               console.log(jqXHR.status);
          }
 
-        });			
+        });	
+
+       }		
 	}; /* doAdd */
 
 	movieWrapper.doUpdate = function doUpdate() {
@@ -323,7 +327,7 @@ var movieWrapper = {};
               
             $("#actionBtn").unbind("click");
 		 	$("#addModal").modal('hide');
-		 	SBC.loadData();
+		 	movieWrapper.loadData();
          },
      
          error: function (jqXHR, status) {            
@@ -404,19 +408,6 @@ var movieWrapper = {};
 			e.preventDefault();
 			movieWrapper.pagination();
 		});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		movieWrapper.loadData();
 
