@@ -243,6 +243,37 @@ var movieWrapper = {};
 	};
 
 
+	movieWrapper.confirmDelete = function confirmDelete(id) {
+	  $("#deleteConfirm_user_id").attr('value',id);
+	  $("#deleteBtn").click(function () {
+		  movieWrapper.doDelete();
+	  })
+	  $('#deleteModal').modal('show');  
+	
+	}; /* confirmDelete*/
+	
+	
+	movieWrapper.doDelete = function doDelete() {
+		
+		var id = $("#deleteConfirm_user_id").attr('value');
+				
+		$.ajax({
+         type: "DELETE",
+         url: "./api.php/"+id,
+         success: function (data, status, xhr) {
+		 	$("#deleteBtn").unbind("click");
+		 	$("#deleteModal").modal('hide');
+		 	movieWrapper.loadData();
+         },
+     
+         error: function (xhr, status) {
+             // error handler
+             console.log("Delete error: " + xhr.status);
+         }
+        });		
+	}; /* doDelete */
+
+
 	movieWrapper.doAdd = function doAdd() {
 		
 		var obj = {};
