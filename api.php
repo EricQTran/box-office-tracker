@@ -39,23 +39,17 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-   if(strlen($_POST['movie_title']) > 20){
-          $error .= "Movie title is too long!";
-   }
-   if(!ctype_alnum($_POST['movie_title'])){
-       $error .= "Movie title can only have alphanumeric values";
-   }
-   else{
-        $sql = "insert into movies set $set"; break;
-   }
+   
+  $sql = "insert into movies set $set"; break;
+   
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
-$result = mysqli_query($conn, $sql);
-
+//$result = mysqli_query($conn, $sql);
+$result = null;
 if (!$result) {
   http_response_code(404);
-  die("Query failed: ". $error . mysqli_connect_error());
+  die("Query failed: ". $values . mysqli_connect_error());
  }
 
 
