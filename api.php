@@ -50,7 +50,7 @@ $result = mysqli_query($conn, $sql);
 
 if (!$result) {
   http_response_code(404);
-  die("Query failed: " . mysqli_connect_error());
+  die("Query failed: ". $error . mysqli_connect_error());
  }
 
 
