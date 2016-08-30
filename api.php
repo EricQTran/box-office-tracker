@@ -12,7 +12,7 @@ $request = $_SERVER['REQUEST_URI'];
 // read the message if any
 $input = json_decode(file_get_contents('php://input'),true);
 
-
+//get the json fields for validation
 $title = $input['title'];
 $studio = $input['studio'];
 $year = $input['year'];
@@ -22,24 +22,20 @@ $picture = $input['picture'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
 $key = array_shift($request)+0;
-
-
-
-
 $columns = preg_replace('/[^a-z0-9_]+/i','',array_keys($input));
 $values = array_map(function ($value) use ($conn) {
   if ($value===null) return null;
   return mysqli_real_escape_string($conn,(string)$value);
 },array_values($input));
- 
+
 // build the SET part of the SQL command
 $set = '';
 for ($i=0;$i<count($columns);$i++) {
   $set.=($i>0?',':'').'`'.$columns[$i].'`=';
   $set.=($values[$i]===null?'NULL':'"'.$values[$i].'"');
 }
- 
- 
+
+
 
 //Sanatizing inputs before inserting data to the db
 switch ($method) {
@@ -64,7 +60,7 @@ switch ($method) {
       die($error);
     }
     else{
-        $sql = "insert into movies set $set"; break;  
+        $sql = "insert into movies set $set"; break;
     }
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
@@ -95,7 +91,7 @@ if ($method == 'GET') {
 } else {
   echo mysqli_affected_rows($conn);
 }
- 
+
 
 
 // close mysql connection

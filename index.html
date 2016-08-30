@@ -24,14 +24,10 @@
 	<title>Box Office Tracker</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-
 	<style type="text/css">
-
 	#boxOfficeTable{
 		color: white;
 	}
-
-
 	.modal-header{
 		background-color: grey;
 	}
@@ -41,15 +37,12 @@
 	.modal-footer{
 		background-color: grey;
 	}
-
 	#addBtn{
 		display: inline-block;
 	}
-
 	.dropdown{
 		display: inline-block;
 	}
-
 	</style>
 
 </head>
@@ -70,17 +63,13 @@
     <li><a href="#" id="dropdown10">10</a></li>
     <li><a href="#" id="dropdown20">20</a></li>
     <li><a href="#" id="dropdownAll">All</a></li>
-
   </ul>
 </div>
-
 
 <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
 
 <table id="movieGrid" class='table'>
 <tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>
-<!-- place holding -->
-
 </table>
 
 
@@ -122,7 +111,7 @@
 	</div>
 
 	<input type="hidden" name="id" id="id" value="">
-	
+
 	      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
@@ -142,23 +131,48 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="deleteModalLabel">Confirm Delete</h4>
       </div>
-      
-      
-      
+
+
+
       <div class="modal-footer">
 
       <form>
 	  	<input type="hidden" name="user_id" id="deleteConfirm_user_id" value="">
-	  	
+
 	  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button type="button" id="deleteBtn" class="btn btn-primary" value="Delete">Delete</button>
 
        </form>
       </div>
-      
+
     </div>
   </div>
 </div>
+
+
+<!--Picture for Movie modal-->
+<div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" id="dialogPicModal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Picture</h4>
+      </div>
+      <div class="modal-body">
+        <!--body-->
+				<img class="img-responsive" src="" alt="Chania" width="460" height="345">
+
+	      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -172,49 +186,43 @@
 
 var movieWrapper = {};
 
-		
+
 	movieWrapper.loadData = function (numRecords) {
-		
+
 		i = 0;
 
 		$.getJSON("./api.php", function(data) {
-		
+
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
-			    } 
+			    }
 
 			    if(numRecords){
 				//alert("pagination selected" + numRecords);
 
 			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
-			    	
-			    	
-					
+
+
+
 						$.each(data, function (index,value) {
 						if(i< numRecords){
-				
+
 					  		var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
 					 	    str += "<td>"+value.studio+"</td>";
 					  		str += "<td>"+value.year+"</td>";
 					  		str += "<td>"+value.total+"</td>";
-					  		str += "<td>"+value.picture+"</td>"; 
+					  		str += "<td>"+value.picture+"</td>";
 					  		str += "<td><div class='row'>";
-	    	    
-	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
-
-	    
-	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
-
+	             str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 					  		str += "</div></td></tr>";
-					  		
 					  		i++;
-							
 					  		$(str).appendTo("#movieGrid");
-					         	}	
-					  			
+					         	}
+
 				 	 });
-					
+
 
 			}
 
@@ -222,29 +230,25 @@ var movieWrapper = {};
 			  //alert("pagination not selected");
 			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
 					$.each(data, function (index,value) {
-				
+
 					  var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
 					 	    str += "<td>"+value.studio+"</td>";
 					  		str += "<td>"+value.year+"</td>";
 					  		str += "<td>"+value.total+"</td>";
-					  		str += "<td>"+value.picture+"</td>"; 
+					  		str += "<td>"+value.picture+"</td>";
 					  		str += "<td><div class='row'>";
-	    	    
-	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
-
-	    
-	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
-
+	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 					  		str += "</div></td></tr>";
-					  		
-					  $(str).appendTo("#movieGrid");	
-					  			
+
+					  $(str).appendTo("#movieGrid");
+
 				  });
 
 			  }
-			
-   		});	
+
+   		});
 	};
 
 
@@ -253,15 +257,15 @@ var movieWrapper = {};
 	  $("#deleteBtn").click(function () {
 		  movieWrapper.doDelete();
 	  })
-	  $('#deleteModal').modal('show');  
-	
+	  $('#deleteModal').modal('show');
+
 	}; /* confirmDelete*/
-	
-	
+
+
 	movieWrapper.doDelete = function doDelete() {
-		
+
 		var id = $("#deleteConfirm_user_id").attr('value');
-				
+
 		$.ajax({
          type: "DELETE",
          url: "./api.php/"+id,
@@ -270,18 +274,18 @@ var movieWrapper = {};
 		 	$("#deleteModal").modal('hide');
 		 	movieWrapper.loadData();
          },
-     
+
          error: function (xhr, status) {
              // error handler
              console.log("Delete error: " + xhr.status);
          }
-        });		
+        });
 	}; /* doDelete */
 
 
 	movieWrapper.doAdd = function doAdd() {
-		
-		
+
+
 			var obj = {};
 			obj.title = $("#movie_title").val();
 			obj.studio = $("#studio").val();
@@ -303,20 +307,20 @@ var movieWrapper = {};
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          success: function (data, status, jqXHR) {
-              
+
             $("#submitBtn").unbind("click");
 		 	$("#addModal").modal('hide');
 		 	movieWrapper.loadData();
          },
-     
-         error: function (jqXHR, status) {            
+
+         error: function (jqXHR, status) {
               // error handler
               console.log(jqXHR.status);
          }
 
-        });	
+        });
 
-       }		
+       }
 	}; /* doAdd */
 
 	movieWrapper.doUpdate = function doUpdate() {
@@ -328,7 +332,7 @@ var movieWrapper = {};
 		obj.total = $("#box_office").val();
 		obj.picture = $("#picture").val();
 		obj.id = $("#id").val();
-					
+
 		jQuery.ajax({
          type: "PUT",
          url: "./api.php/"+ obj.id,
@@ -336,17 +340,17 @@ var movieWrapper = {};
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          success: function (data, status, jqXHR) {
-              
+
             $("#actionBtn").unbind("click");
 		 	$("#addModal").modal('hide');
 		 	movieWrapper.loadData();
          },
-     
-         error: function (jqXHR, status) {            
+
+         error: function (jqXHR, status) {
               // error handler
               console.log(jqXHR.status);
          }
-        });			
+        });
 	} /* doUpdate */
 
 
@@ -354,26 +358,26 @@ var movieWrapper = {};
 
 	  if (!record) {
 		// no data so it is a straight add
-		
-		// clear the fields 
+
+		// clear the fields
 		$("#movie_title").val('');
 		$("#studio").val('');
 		$("#year").val('');
 		$("#box_office").val('');
 		$("#picture").val('');
-		
+
 		$("#myModalLabel").html("Add Record");
-	
+
 	    $("#submitBtn").html('Add');
 	    $("#submitBtn").click(function () {
-		   movieWrapper.doAdd(); 
+		   movieWrapper.doAdd();
 	    });
-	    
+
 	  } else {
 	    // data passed so it is an edit
-	    
+
 	  alert("it is an edit");
-	    
+
 	    $('#addModal').modal('show');
 	    $("#movie_title").val(record.movie_title);
 		$("#studio").val(record.studio);
@@ -381,30 +385,38 @@ var movieWrapper = {};
 		$("#box_office").val(record.box_office);
 		$("#picture").val(record.picture);
 	    $("#id").val(record.id);
-	  
-	  
+
+
 	    $("#myModalLabel").html("Edit Record");
-           	
+
 	    $("#submitBtn").html('Update');
 	    $("#submitBtn").click(function () {
-		   movieWrapper.doUpdate(); 
+		   movieWrapper.doUpdate();
 	    });
 	  }
-	  
+
 	 // focus the first field
 	 $('#addModal').on('shown.bs.modal', function () {
 		$('#movie_title').focus()
 	 });
-		
+
 //	 $('#addModal').modal('show');
-	  
+
    } /* editForm */
 
+   //paginatio function
    movieWrapper.pagination = function pagination(num){
    		movieWrapper.loadData(num);
    }
 
- // bind load events 
+
+	 movieWrapper.showPicture = function showPicture(){
+		 
+	 }
+
+
+
+ // bind load events
    $(document).ready(function () {
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
@@ -426,9 +438,9 @@ var movieWrapper = {};
 		movieWrapper.loadData();
 
 		$("#addBtn").click(function () {
-		   movieWrapper.editForm();	
+		   movieWrapper.editForm();
 		});
-		 			
+
     });
 
 </script>
