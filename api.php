@@ -12,6 +12,20 @@ $request = $_SERVER['REQUEST_URI'];
 // read the message if any
 $input = json_decode(file_get_contents('php://input'),true);
 
+
+$title = $input['title'];
+$studio = $input['studio'];
+$year = $input['year'];
+$total = $input['total'];
+$picture = $input['picture'];
+
+if(!ctype_alnum($title) OR !ctype_alnum($studio)){
+  $error .="Only alphanumeric values are allowed for movie title and studio name";
+
+  http_response_code(404);
+  die($error);
+}
+
 print_r( $input['title']);
 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -19,7 +33,7 @@ $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 $key = array_shift($request)+0;
 
 
-/*
+
 
 $columns = preg_replace('/[^a-z0-9_]+/i','',array_keys($input));
 $values = array_map(function ($value) use ($conn) {
@@ -43,18 +57,16 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-   
-  $sql = "insert into movies set $set"; break;
-   
+  $sql = "insert into movies set $set"; break;  
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
 
 $result = mysqli_query($conn, $sql);
 
-if ($result) {
+if (!$result) {
   http_response_code(404);
-  die("Query failed: ". $input->title. $values[0]. $input->year); //. mysqli_connect_error());
+  die("Query failed: " . mysqli_connect_error());
  }
 
 
@@ -77,7 +89,7 @@ if ($method == 'GET') {
 }
  
 
-*/
+
 // close mysql connection
 mysqli_close($conn);
 
