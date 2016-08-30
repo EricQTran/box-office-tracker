@@ -41,7 +41,7 @@ for ($i=0;$i<count($columns);$i++) {
  
  
 
-
+//Sanatizing inputs before inserting data to the db
 switch ($method) {
   case 'GET':
     $sql = "select * from movies".($key?" where id=$key":''); break;
@@ -55,9 +55,13 @@ switch ($method) {
     }
     if(strlen($year) > 4){
       $error .= "Year must be less than 4 digits long";
+      http_response_code(404);
+      die($error);
     }
     if(!ctype_digit($year) OR !ctype_digit($total)){
       $error .= "Year and total box office values must only contain digits";
+      http_response_code(404);
+      die($error);
     }
     else{
         $sql = "insert into movies set $set"; break;  
