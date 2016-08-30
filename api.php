@@ -45,9 +45,9 @@ switch ($method) {
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
-//$result = mysqli_query($conn, $sql);
-$result = null;
-if (!$result) {
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
   http_response_code(404);
   die("Query failed: ". $input->title . mysqli_connect_error());
  }
