@@ -39,11 +39,11 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-   if(strlen($_POST['title']) > 20){
-          $error = "Movie title is too long!";
+   if(strlen($_POST['movie_title']) > 20){
+          $error .= "Movie title is too long!";
    }
-   if(!ctype_alnum($_POST['title'])){
-       $error = "Movie title can only have alphanumeric values";
+   if(!ctype_alnum($_POST['movie_title'])){
+       $error .= "Movie title can only have alphanumeric values";
    }
     $sql = "insert into movies set $set"; break;
   case 'DELETE':
