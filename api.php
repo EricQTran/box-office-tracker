@@ -12,7 +12,7 @@ $request = $_SERVER['REQUEST_URI'];
 // read the message if any
 $input = json_decode(file_get_contents('php://input'),true);
 
-echo $input[0]->title;
+print_r($input);
 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
