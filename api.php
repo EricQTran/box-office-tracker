@@ -19,15 +19,6 @@ $year = $input['year'];
 $total = $input['total'];
 $picture = $input['picture'];
 
-if(!ctype_alnum($title) OR !ctype_alnum($studio)){
-  $error .="Only alphanumeric values are allowed for movie title and studio name";
-
-  http_response_code(404);
-  die($error);
-}
-
-print_r( $input['title']);
-
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
 $key = array_shift($request)+0;
@@ -57,7 +48,15 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-  $sql = "insert into movies set $set"; break;  
+    if(!ctype_alnum($title) OR !ctype_alnum($studio)){
+      $error .="Only alphanumeric values are allowed for movie title and studio name";
+
+      http_response_code(404);
+      die($error);
+    }
+    else{
+        $sql = "insert into movies set $set"; break;  
+    }
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
