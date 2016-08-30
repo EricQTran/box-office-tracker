@@ -45,7 +45,9 @@ switch ($method) {
    if(!ctype_alnum($_POST['movie_title'])){
        $error .= "Movie title can only have alphanumeric values";
    }
-    $sql = "insert into movies set $set"; break;
+   else{
+        $sql = "insert into movies set $set"; break;
+   }
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
