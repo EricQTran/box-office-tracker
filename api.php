@@ -42,8 +42,13 @@ switch ($method) {
   case 'GET':
     $sql = "select * from movies".($key?" where id=$key":''); break;
   case 'PUT':
-  if(!ctype_alnum($title) OR !ctype_alnum($studio)){
-      $error .="Only alphanumeric values are allowed for movie title and studio name";
+  if(!preg_match('/^[a-z0-9 .\-]+$/i', $title)){
+      $error .="Only alphanumeric values are allowed for movie title";
+      http_response_code(400);
+      die($error);
+    }
+    if(!preg_match('/^[a-z0-9 .\-]+$/i', $studio)){
+      $error .="Only alphanumeric values are allowed for studio name";
       http_response_code(400);
       die($error);
     }
@@ -65,8 +70,13 @@ switch ($method) {
           $sql = "update movies set $set where id=$key"; break;
     }
   case 'POST':
-    if(!ctype_alnum($title) OR !ctype_alnum($studio)){
-      $error .="Only alphanumeric values are allowed for movie title and studio name";
+    if(!preg_match('/^[a-z0-9 .\-]+$/i', $title)){
+      $error .="Only alphanumeric values are allowed for movie title";
+      http_response_code(400);
+      die($error);
+    }
+    if(!preg_match('/^[a-z0-9 .\-]+$/i', $studio)){
+      $error .="Only alphanumeric values are allowed for studio name";
       http_response_code(400);
       die($error);
     }
