@@ -1,6 +1,8 @@
 <?php
 
 require_once 'config.inc';
+//hold the error msg
+$error = '';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -37,9 +39,10 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-  $movieTitle = $_POST['movie_title'];
-  echo $movie_title;
-    //$sql = "insert into movies set $set"; break;
+  if(!ctype_alnum($_POST['movie_title'])){
+    $error = '<p class="error">Movie Titles can only contain alphanumeric values</p>';
+  }
+    $sql = "insert into movies set $set"; break;
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
@@ -56,7 +59,7 @@ if (!$result) {
 
 //echo json_encode(mysqli_fetch_object($result));
 
-/*
+
 if ($method == 'GET') {
   if (!$key) echo '[';
   for ($i=0;$i<mysqli_num_rows($result);$i++) {
@@ -69,7 +72,7 @@ if ($method == 'GET') {
   echo mysqli_affected_rows($conn);
 }
  
-*/
+
 
 // close mysql connection
 mysqli_close($conn);
