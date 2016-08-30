@@ -12,10 +12,14 @@ $request = $_SERVER['REQUEST_URI'];
 // read the message if any
 $input = json_decode(file_get_contents('php://input'),true);
 
+print_r($input);
+
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
 $key = array_shift($request)+0;
 
+
+/*
 
 $columns = preg_replace('/[^a-z0-9_]+/i','',array_keys($input));
 $values = array_map(function ($value) use ($conn) {
@@ -45,6 +49,7 @@ switch ($method) {
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
+
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
@@ -72,9 +77,9 @@ if ($method == 'GET') {
 }
  
 
-
+*/
 // close mysql connection
 mysqli_close($conn);
 
- 
+
 ?>
