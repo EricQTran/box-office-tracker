@@ -42,21 +42,46 @@ switch ($method) {
   case 'GET':
     $sql = "select * from movies".($key?" where id=$key":''); break;
   case 'PUT':
-    $sql = "update movies set $set where id=$key"; break;
-  case 'POST':
-    if(!ctype_alnum($title) OR !ctype_alnum($studio)){
+  if(!ctype_alnum($title) OR !ctype_alnum($studio)){
       $error .="Only alphanumeric values are allowed for movie title and studio name";
-      http_response_code(404);
+      http_response_code(400);
       die($error);
     }
     if(strlen($year) > 4){
       $error .= "Year must be less than 4 digits long";
-      http_response_code(404);
+      http_response_code(400);
       die($error);
+    }
+    if($year < 0 OR $total < 0){
+      $error .= "Year and total box office cannot be a negative value";
+      http_response_code(400);
     }
     if(!ctype_digit($year) OR !ctype_digit($total)){
       $error .= "Year and total box office values must only contain digits";
-      http_response_code(404);
+      http_response_code(400);
+      die($error);
+    }
+    else{
+          $sql = "update movies set $set where id=$key"; break;
+    }
+  case 'POST':
+    if(!ctype_alnum($title) OR !ctype_alnum($studio)){
+      $error .="Only alphanumeric values are allowed for movie title and studio name";
+      http_response_code(400);
+      die($error);
+    }
+    if(strlen($year) > 4){
+      $error .= "Year must be less than 4 digits long";
+      http_response_code(400);
+      die($error);
+    }
+    if($year < 0 OR $total < 0){
+      $error .= "Year and total box office cannot be a negative value";
+      http_response_code(400);
+    }
+    if(!ctype_digit($year) OR !ctype_digit($total)){
+      $error .= "Year and total box office values must only contain digits";
+      http_response_code(400);
       die($error);
     }
     else{
