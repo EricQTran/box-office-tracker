@@ -327,6 +327,7 @@ var movieWrapper = {};
 		obj.year = $("#year").val();
 		obj.total = $("#box_office").val();
 		obj.picture = $("#picture").val();
+		obj.id = $("#id").val();
 					
 		jQuery.ajax({
          type: "PUT",
@@ -372,7 +373,8 @@ var movieWrapper = {};
 	    // data passed so it is an edit
 	    
 	  alert("it is an edit");
-	  $('#addModal').modal('show');
+	    
+	    $('#addModal').modal('show');
 	    $("#movie_title").val(record.movie_title);
 		$("#studio").val(record.studio);
 		$("#year").val(record.year);
