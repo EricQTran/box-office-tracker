@@ -49,7 +49,7 @@ $result = mysqli_query($conn, $sql);
 
 if ($result) {
   http_response_code(404);
-  die("Query failed: ". $input->title . mysqli_connect_error());
+  die("Query failed: ". $input->title. $values[0]. $input->year); //. mysqli_connect_error());
  }
 
 
