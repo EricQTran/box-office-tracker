@@ -39,7 +39,9 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-    $error = $_POST['movie_title'];
+  if(strlen($_POST['movie_title']) > 20){
+        $error = "Movie title is too long!";
+  }
     $sql = "insert into movies set $set"; break;
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
