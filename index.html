@@ -121,7 +121,7 @@
 		<input type="text" name="picture" id="picture" value=""  class="form-control" required>
 	</div>
 
-	<input type="hidden" name="id" id="id" value="">
+	<input type="hidden" name="user_id" id="user_id" value="">
 	
 	      </div>
       <div class="modal-footer">
@@ -204,7 +204,7 @@ var movieWrapper = {};
 	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
 
 	    
-	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.user_id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 
 					  		str += "</div></td></tr>";
 					  		
@@ -322,16 +322,16 @@ var movieWrapper = {};
 	movieWrapper.doUpdate = function doUpdate() {
 	alert("update!");	
 		var obj = {};
-		obj.title = $("#movie_title").val();
+		obj.movie_title = $("#movie_title").val();
 		obj.studio = $("#studio").val();
 		obj.year = $("#year").val();
 		obj.total = $("#box_office").val();
 		obj.picture = $("#picture").val();
-		obj.id = $("#id").val();
+		obj.user_id = $("#user_id").val();
 					
 		jQuery.ajax({
          type: "PUT",
-         url: "./api.php/"+ obj.id,
+         url: "./api.php/"+ obj.user_id,
          data: JSON.stringify(obj),
          contentType: "application/json; charset=utf-8",
          dataType: "json",
@@ -361,7 +361,8 @@ var movieWrapper = {};
 		$("#year").val('');
 		$("#box_office").val('');
 		$("#picture").val('');
-		
+		$("#user_id").val('');
+
 		$("#myModalLabel").html("Add Record");
 	
 	    $("#submitBtn").html('Add');
@@ -380,7 +381,7 @@ var movieWrapper = {};
 		$("#year").val(record.year);
 		$("#box_office").val(record.box_office);
 		$("#picture").val(record.picture);
-	    $("#id").val(record.id);
+	    $("#user_id").val(record.user_id);
 	  
 	  
 	    $("#myModalLabel").html("Edit Record");
