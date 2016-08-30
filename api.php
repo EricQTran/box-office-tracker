@@ -50,9 +50,14 @@ switch ($method) {
   case 'POST':
     if(!ctype_alnum($title) OR !ctype_alnum($studio)){
       $error .="Only alphanumeric values are allowed for movie title and studio name";
-
       http_response_code(404);
       die($error);
+    }
+    if(strlen($year) > 4){
+      $error .= "Year must be less than 4 digits long";
+    }
+    if(!ctype_digit($year) OR !ctype_digit($total)){
+      $error .= "Year and total box office values must only contain digits";
     }
     else{
         $sql = "insert into movies set $set"; break;  
