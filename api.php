@@ -49,7 +49,7 @@ switch ($method) {
 $result = null;
 if (!$result) {
   http_response_code(404);
-  die("Query failed: ". $values . mysqli_connect_error());
+  die("Query failed: ". $input . mysqli_connect_error());
  }
 
 
