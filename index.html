@@ -70,7 +70,8 @@
 <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
 
 <table id="movieGrid" class='table'>
-<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>
+<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>
+
 </table>
 
 
@@ -225,7 +226,6 @@ var movieWrapper = {};
 
 				 	 });
 
-					$("</tbody></table>").appendTo("#movieGrid");
 
 
 			}
@@ -250,7 +250,6 @@ var movieWrapper = {};
 
 				  });
 
-										$("</tbody></table>").appendTo("#movieGrid");
 
 
 			  }
@@ -425,6 +424,9 @@ var movieWrapper = {};
 
  // bind load events
    $(document).ready(function () {
+
+   		$("movieGrid").tablesorter();
+
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
 			movieWrapper.pagination(5);
