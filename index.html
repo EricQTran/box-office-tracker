@@ -124,7 +124,11 @@
 	<input type="hidden" name="user_id" id="user_id" value="">
 	
 	      </div>
-      <div class="modal-footer">
+      <div class="modal-fo
+
+
+
+      oter">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
       </div>
@@ -234,7 +238,7 @@ var movieWrapper = {};
 	                 	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
 
 	    
-	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+	                  	 	 str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.user_id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 
 					  		str += "</div></td></tr>";
 					  		
