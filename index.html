@@ -201,7 +201,8 @@ var movieWrapper = {};
 			    if(numRecords){
 				//alert("pagination selected" + numRecords);
 
-			    	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
+			    	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
+
 
 
 
@@ -224,12 +225,14 @@ var movieWrapper = {};
 
 				 	 });
 
+					$("</tbody></table>").appendTo("#movieGrid");
+
 
 			}
 
 			  else{
 			  //alert("pagination not selected");
-			  	 	$("#movieGrid").html("<tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr>");
+			  	 	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
 					$.each(data, function (index,value) {
 
 					  var str = "";
@@ -246,6 +249,9 @@ var movieWrapper = {};
 					  $(str).appendTo("#movieGrid");
 
 				  });
+
+										$("</tbody></table>").appendTo("#movieGrid");
+
 
 			  }
 
@@ -298,7 +304,6 @@ var movieWrapper = {};
 			alert ("Please fill in all fields");
 		}
 
-
 		else{
 
 		jQuery.ajax({
@@ -316,7 +321,8 @@ var movieWrapper = {};
 
          error: function (jqXHR, status) {
               // error handler
-              console.log(jqXHR.responseJSON);
+              console.log(jqXHR.responseText);
+              alert(jqXHR.responseText);
          }
 
         });
