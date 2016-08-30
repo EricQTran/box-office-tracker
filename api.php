@@ -37,7 +37,9 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-    $sql = "insert into movies set $set"; break;
+  $movieTitle = $_POST['movie_title'];
+  echo $movie_title;
+    //$sql = "insert into movies set $set"; break;
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
 }
@@ -54,7 +56,7 @@ if (!$result) {
 
 //echo json_encode(mysqli_fetch_object($result));
 
-
+/*
 if ($method == 'GET') {
   if (!$key) echo '[';
   for ($i=0;$i<mysqli_num_rows($result);$i++) {
@@ -67,7 +69,7 @@ if ($method == 'GET') {
   echo mysqli_affected_rows($conn);
 }
  
-
+*/
 
 // close mysql connection
 mysqli_close($conn);
