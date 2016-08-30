@@ -320,7 +320,7 @@ var movieWrapper = {};
 	}; /* doAdd */
 
 	movieWrapper.doUpdate = function doUpdate() {
-		
+	alert("update!");	
 		var obj = {};
 		obj.title = $("#movie_title").val();
 		obj.studio = $("#studio").val();
@@ -350,7 +350,7 @@ var movieWrapper = {};
 
 
 	movieWrapper.editForm = function editRecord(record) {
-	  
+	 alert("editform"); 
 	  if (!record) {
 		// no data so it is a straight add
 		
@@ -371,7 +371,8 @@ var movieWrapper = {};
 	  } else {
 	    // data passed so it is an edit
 	    
-	  
+	  alert("it is an edit");
+	  $('#addModal').modal('show');
 	    $("#movie_title").val(record.movie_title);
 		$("#studio").val(record.studio);
 		$("#year").val(record.year);
@@ -381,7 +382,7 @@ var movieWrapper = {};
 	  
 	  
 	    $("#myModalLabel").html("Edit Record");
-	
+           	
 	    $("#submitBtn").html('Update');
 	    $("#submitBtn").click(function () {
 		   movieWrapper.doUpdate(); 
@@ -393,7 +394,7 @@ var movieWrapper = {};
 		$('#movie_title').focus()
 	 });
 		
-	 $('#addModal').modal('show');
+//	 $('#addModal').modal('show');
 	  
    } /* editForm */
 
