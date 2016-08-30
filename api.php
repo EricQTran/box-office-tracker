@@ -39,9 +39,7 @@ switch ($method) {
   case 'PUT':
     $sql = "update movies set $set where id=$key"; break;
   case 'POST':
-  if(!ctype_alnum($_POST['movie_title'])){
-    $error = '<p class="error">Movie Titles can only contain alphanumeric values</p>';
-  }
+    $error = $_POST['movie_title'];
     $sql = "insert into movies set $set"; break;
   case 'DELETE':
     $sql = "delete from movies where id=$key"; break;
