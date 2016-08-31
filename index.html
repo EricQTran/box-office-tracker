@@ -50,8 +50,6 @@
 
 </head>
 <body  style="background-image: url('img/bg.jpg')">
-  
-
 <div class="container" id="boxOfficeTable">
 
 <h1>Box Office Tracker</h1>
@@ -81,37 +79,22 @@
 		<th>Picture</th>
 	</tr>
 </thead>
-
-
 <tbody>
-
-
 </tbody>
-
 </table>
-
 
 <!-- Add/Update Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  
-
   <div class="modal-dialog" id="dialogModal" role="document">
-    
-    <div class="modal-content">
-      
+    <div class="modal-content">  
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Add/Update a Record</h4>
       </div>
-
-
-    <div class="modal-body">
-       
-
-     <form id="addForm" class="form">
-	
+    <div class="modal-body">       
+     <form id="addForm" class="form">	
 	 <div class="form-group">
 	 	<label for="movie_title">Movie Title</label>
 	 	<input type="text" name="movie_title" id="movie_title" value=""  class="form-control" required>
@@ -139,9 +122,7 @@
 
 	<input type="hidden" name="id" id="id" value="">
 	  </form>
-
 	</div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
@@ -160,32 +141,20 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="deleteModalLabel">Confirm Delete</h4>
       </div>
-
-
-
       <div class="modal-footer">
-
       <form>
 	  	<input type="hidden" name="user_id" id="deleteConfirm_user_id" value="">
-
 	  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button type="button" id="deleteBtn" class="btn btn-primary" value="Delete">Delete</button>
-
        </form>
       </div>
-
     </div>
   </div>
 </div>
 
 
-
-
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-   
 <script type="text/javascript">
 
 var movieWrapper = {};
@@ -202,13 +171,7 @@ var movieWrapper = {};
 			    }
 
 			    if(numRecords){
-				//alert("pagination selected" + numRecords);
-
 			    	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
-
-
-
-
 						$.each(data, function (index,value) {
 						if(i< numRecords){
 
@@ -233,7 +196,6 @@ var movieWrapper = {};
 			}
 
 			  else{
-			  //alert("pagination not selected");
 			  	 	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
 					$.each(data, function (index,value) {
 
@@ -284,7 +246,6 @@ var movieWrapper = {};
          },
 
          error: function (xhr, status) {
-             // error handler
              console.log("Delete error: " + xhr.status);
          }
         });
@@ -356,8 +317,8 @@ var movieWrapper = {};
 
          error: function (jqXHR, status) {
               // error handler
-              console.log(jqXHR.status);
-         }
+ 			  console.log(jqXHR.responseText);
+              alert(jqXHR.responseText);         }
         });
 	} /* doUpdate */
 
@@ -366,16 +327,13 @@ var movieWrapper = {};
 
 	  if (!record) {
 		// no data so it is a straight add
-
 		// clear the fields
 		$("#movie_title").val('');
 		$("#studio").val('');
 		$("#year").val('');
 		$("#box_office").val('');
 		$("#picture").val('');
-
 		$("#myModalLabel").html("Add Record");
-
 	    $("#submitBtn").html('Add');
 	    $("#submitBtn").click(function () {
 		   movieWrapper.doAdd();
@@ -383,8 +341,6 @@ var movieWrapper = {};
 
 	  } else {
 	    // data passed so it is an edit
-
-
 	    $('#addModal').modal('show');
 	    $("#movie_title").val(record.movie_title);
 		$("#studio").val(record.studio);
@@ -392,10 +348,7 @@ var movieWrapper = {};
 		$("#box_office").val(record.box_office);
 		$("#picture").val(record.picture);
 	    $("#id").val(record.id);
-
-
 	    $("#myModalLabel").html("Edit Record");
-
 	    $("#submitBtn").html('Update');
 	    $("#submitBtn").click(function () {
 		   movieWrapper.doUpdate();
@@ -406,9 +359,6 @@ var movieWrapper = {};
 	 $('#addModal').on('shown.bs.modal', function () {
 		$('#movie_title').focus()
 	 });
-
-//	 $('#addModal').modal('show');
-
    } /* editForm */
 
    //paginatio function
@@ -420,7 +370,6 @@ var movieWrapper = {};
    $(document).ready(function () {
 
    		$("movieGrid").DataTable();
-
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
 			movieWrapper.pagination(5);
@@ -437,9 +386,7 @@ var movieWrapper = {};
 			e.preventDefault();
 			movieWrapper.pagination();
 		});
-
 		movieWrapper.loadData();
-
 		$("#addBtn").click(function () {
 		   movieWrapper.editForm();
 		});
@@ -447,7 +394,5 @@ var movieWrapper = {};
     });
 
 </script>
-
 </body>
-
 </html>

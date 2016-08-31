@@ -108,13 +108,7 @@ if (!$result) {
   die("Query failed: " . mysqli_connect_error());
  }
 
-
 // print results, insert id or affected row count
-
-
-//echo json_encode(mysqli_fetch_object($result));
-
-
 if ($method == 'GET') {
   if (!$key) echo '[';
   for ($i=0;$i<mysqli_num_rows($result);$i++) {
@@ -126,8 +120,6 @@ if ($method == 'GET') {
 } else {
   echo mysqli_affected_rows($conn);
 }
-
-
 
 // close mysql connection
 mysqli_close($conn);
