@@ -29,7 +29,7 @@
 
 	<style type="text/css">
 	#boxOfficeTable{
-		color: black;
+		color: white;
 	}
 	.modal-header{
 		background-color: grey;
@@ -168,14 +168,9 @@
 
 
 
-
-
   <!--<script src="js/bootstrap.min.js"></script>-->
 
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-     <script src="js/bootstrap.min.js"></script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 
@@ -184,13 +179,15 @@ var movieWrapper = {};
 
 	movieWrapper.loadData = function (numRecords) {
 
+		i = 0;
+
 		$.getJSON("./api.php", function(data) {
 
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
 			    }
 
-			   
+			    if(numRecords){
 				//alert("pagination selected" + numRecords);
 
 			    	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
@@ -199,7 +196,7 @@ var movieWrapper = {};
 
 
 						$.each(data, function (index,value) {
-						
+						if(i< numRecords){
 
 					  		var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
@@ -211,14 +208,42 @@ var movieWrapper = {};
 	             str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
 	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 					  		str += "</div></td></tr>";
+					  		i++;
 					  		$(str).appendTo("#movieGrid");
-					         	
+					         	}
 
 				 	 });
 
+
+
+			}
+
+			  else{
+			  //alert("pagination not selected");
+			  	 	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
+					$.each(data, function (index,value) {
+
+					  var str = "";
+					  		str += "<tr><td>"+value.title+"</td>";
+					 	    str += "<td>"+value.studio+"</td>";
+					  		str += "<td>"+value.year+"</td>";
+					  		str += "<td>"+value.total+"</td>";
+					  		str += "<td>"+"<a target='_blank' href="+value.picture+ ">Link to Picture</a>"+"</td>";
+					  		str += "<td><div class='row'>";
+	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
+	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
+					  		str += "</div></td></tr>";
+
+					  $(str).appendTo("#movieGrid");
+
+				  });
+
+
+
+			  }
+
    		});
-		$("</tbody>").appendTo("#movieGrid")
-		$('#movieGrid').DataTable();
+
 	};
 
 
@@ -380,7 +405,6 @@ var movieWrapper = {};
    $(document).ready(function () {
 
 
-   		/*
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
 			movieWrapper.pagination(5);
@@ -397,7 +421,7 @@ var movieWrapper = {};
 			e.preventDefault();
 			movieWrapper.pagination();
 		});
-		*/
+
 		movieWrapper.loadData();
 
 		$("#addBtn").click(function () {
