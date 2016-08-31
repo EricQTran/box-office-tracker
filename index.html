@@ -197,8 +197,6 @@ var movieWrapper = {};
 
 	movieWrapper.loadData = function (numRecords) {
 
-		i = 0;
-
 		$.getJSON("./api.php", function(data) {
 
 			    if (data.length == 0) {
@@ -214,7 +212,7 @@ var movieWrapper = {};
 
 
 						$.each(data, function (index,value) {
-						if(i< numRecords){
+						
 
 					  		var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
@@ -228,7 +226,7 @@ var movieWrapper = {};
 					  		str += "</div></td></tr>";
 					  		i++;
 					  		$(str).appendTo("#movieGrid");
-					         	}
+					         	
 
 				 	 });
 
