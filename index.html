@@ -424,9 +424,6 @@ var movieWrapper = {};
 	 $('#addModal').on('shown.bs.modal', function () {
 		$('#movie_title').focus()
 	 });
-
-//	 $('#addModal').modal('show');
-
    } /* editForm */
 
    //paginatio function
@@ -434,17 +431,9 @@ var movieWrapper = {};
    		movieWrapper.loadData(num);
    }
 
-
-	 movieWrapper.showPicture = function showPicture(){
-		 
-	 }
-
-
-
  // bind load events
    $(document).ready(function () {
 
-   		$("movieGrid").DataTable();
 
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
@@ -468,6 +457,9 @@ var movieWrapper = {};
 		$("#addBtn").click(function () {
 		   movieWrapper.editForm();
 		});
+
+		$("movieGrid").DataTable();
+
 
     });
 
