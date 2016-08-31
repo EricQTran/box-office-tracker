@@ -29,7 +29,7 @@
 
 	<style type="text/css">
 	#boxOfficeTable{
-		color: white;
+		color: black;
 	}
 	.modal-header{
 		background-color: grey;
@@ -57,18 +57,6 @@
 <h1>Box Office Tracker</h1>
 <h3>Eric Tran <a href="mailto:eqtran@ucsd.edu" id="emailName">eqtran@ucsd.edu</a></h3>
 
-<!--Pagination-->
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pagination
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#" id="dropdown5">5</a></li>
-    <li><a href="#" id="dropdown10">10</a></li>
-    <li><a href="#" id="dropdown20">20</a></li>
-    <li><a href="#" id="dropdownAll">All</a></li>
-  </ul>
-</div>
-
 <button type="button" id="addBtn" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Record</button>
 
 <table id="movieGrid" class="table">
@@ -86,23 +74,32 @@
 <tbody>
 
 
-</tbody
+</tbody>
 
 </table>
 
 
 <!-- Add/Update Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+
   <div class="modal-dialog" id="dialogModal" role="document">
+    
     <div class="modal-content">
+      
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Add/Update a Record</h4>
       </div>
-      <div class="modal-body">
-        <form id="addForm" class="form">
+
+
+    <div class="modal-body">
+       
+
+     <form id="addForm" class="form">
+	
 	 <div class="form-group">
 	 	<label for="movie_title">Movie Title</label>
 	 	<input type="text" name="movie_title" id="movie_title" value=""  class="form-control" required>
@@ -129,20 +126,24 @@
 	</div>
 
 	<input type="hidden" name="id" id="id" value="">
+	  </form>
 
-	      </div>
+	</div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
       </div>
-    </div>
-  </div>
+   </div>
+</div>
+</div>
 </div>
 
+ 
 
 
 <!-- Delete modal -->
-<div id="deleteModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div id="deleteModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="deleteModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -153,13 +154,11 @@
 
 
       <div class="modal-footer">
-
       <form>
 	  	<input type="hidden" name="user_id" id="deleteConfirm_user_id" value="">
 
 	  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button type="button" id="deleteBtn" class="btn btn-primary" value="Delete">Delete</button>
-
        </form>
       </div>
 
@@ -168,39 +167,15 @@
 </div>
 
 
-<!--Picture for Movie modal-->
-<div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" id="dialogPicModal" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Picture</h4>
-      </div>
-      <div class="modal-body">
-        <!--body-->
-				<img class="img-responsive" src="" alt="Chania" width="460" height="345">
 
-	      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="submitBtn">Add</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-</div>
 
 
   <!--<script src="js/bootstrap.min.js"></script>-->
 
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+     <script src="js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 
@@ -209,15 +184,13 @@ var movieWrapper = {};
 
 	movieWrapper.loadData = function (numRecords) {
 
-		i = 0;
-
 		$.getJSON("./api.php", function(data) {
 
 			    if (data.length == 0) {
 				    $("#movieGrid").html("<tr><td colspan='5'>No Users</td></tr>");
 			    }
 
-			    if(numRecords){
+			   
 				//alert("pagination selected" + numRecords);
 
 			    	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
@@ -226,7 +199,7 @@ var movieWrapper = {};
 
 
 						$.each(data, function (index,value) {
-						if(i< numRecords){
+						
 
 					  		var str = "";
 					  		str += "<tr><td>"+value.title+"</td>";
@@ -238,39 +211,10 @@ var movieWrapper = {};
 	             str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
 	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
 					  		str += "</div></td></tr>";
-					  		i++;
 					  		$(str).appendTo("#movieGrid");
-					         	}
+					         	
 
 				 	 });
-
-
-
-			}
-
-			  else{
-			  //alert("pagination not selected");
-			  	 	$("#movieGrid").html("<thead><tr><th>Movie Title</th><th>Studio</th><th>Year</th><th>Box Office $</th><th>Picture</th></tr></thead><tbody>");
-					$.each(data, function (index,value) {
-
-					  var str = "";
-					  		str += "<tr><td>"+value.title+"</td>";
-					 	    str += "<td>"+value.studio+"</td>";
-					  		str += "<td>"+value.year+"</td>";
-					  		str += "<td>"+value.total+"</td>";
-					  		str += "<td>"+"<a target='_blank' href="+value.picture+ ">Link to Picture</a>"+"</td>";
-					  		str += "<td><div class='row'>";
-	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.editForm(" + JSON.stringify(value) + ")'><span class='glyphicon glyphicon-pencil'></span></button></div>";
-	              str += "<div class='col-sm-6'><button type='button' class='btn btn-default' onclick='movieWrapper.confirmDelete(" + value.id + ");'><span class='glyphicon glyphicon-trash'></span></button></div>";
-					  		str += "</div></td></tr>";
-
-					  $(str).appendTo("#movieGrid");
-
-				  });
-
-
-
-			  }
 
    		});
 
@@ -436,6 +380,7 @@ var movieWrapper = {};
    $(document).ready(function () {
 
 
+   		/*
 		$('#dropdown5').click(function(e){
 			e.preventDefault();
 			movieWrapper.pagination(5);
@@ -452,7 +397,7 @@ var movieWrapper = {};
 			e.preventDefault();
 			movieWrapper.pagination();
 		});
-
+		*/
 		movieWrapper.loadData();
 
 		$("#addBtn").click(function () {
